@@ -17,7 +17,7 @@ html, body {
   left: 0;
   width: 100%;
   height: 70px; /* altura da faixa */
-  background: red;
+  background: red; /* fundo vermelho */
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -26,8 +26,11 @@ html, body {
   color: #fff;
   font-size: 30px;
   font-family: Arial, sans-serif;
+  font-weight: bold;           /* negrito */
+  text-transform: uppercase;   /* tudo em maiúsculo */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* destaque leve */
   white-space: nowrap;
-  animation: scroll 25s linear infinite;
+  animation: scroll 25s linear infinite; /* velocidade da rolagem */
   padding-left: 100%;
 }
 @keyframes scroll {
@@ -35,14 +38,14 @@ html, body {
   100% { transform: translateX(-100%); }
 }
 b {
-  color: #00ff90;
+  color: #00ff90; /* mantém destaque do EU QUERO */
 }
 </style>
 </head>
 <body>
 <div id="container">
   <div id="marquee">
-    🚀 Teste grátis de 7 dias da IA Turbo Trader! Mande <b>EU QUERO</b> no chat pra garantir o acesso agora e entrar para a lista! 🔥
+    🚀 TESTE GRÁTIS DE 7 DIAS DA IA TURBO TRADER! MANDE <b>EU QUERO</b> NO CHAT PRA GARANTIR O ACESSO AGORA E ENTRAR PARA A LISTA! 🔥
   </div>
 </div>
 </body>
