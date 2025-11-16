@@ -1,7 +1,9 @@
-<div class="marquee">
-  <span class="item">Teste grátis por 7 dias</span>
-  <span class="item numero">WhatsApp: 11 99999-9999</span>
-  <span class="item">Digite EU QUERO</span>
+<div class="marquee bloco">
+  <div class="conteudo">
+    <span class="item">Teste grátis por 7 dias</span>
+    <span class="item numero">WhatsApp: 11 99999-9999</span>
+    <span class="item">Digite EU QUERO</span>
+  </div>
 </div>
 
 <style>
@@ -12,30 +14,28 @@
     position: relative;
   }
 
+  .conteudo {
+    display: inline-block;
+    animation: animacao 12s linear infinite;
+  }
+
   .item {
     display: inline-block;
     padding: 0 40px;
     font-size: 28px;
-    animation: scroll 12s linear infinite;
   }
 
-  /* Destaque do número */
   .numero {
     color: #00ff55;
     font-weight: bold;
-    animation: scroll 12s linear infinite, pauseNumero 12s linear infinite;
   }
 
-  /* Scroll do texto */
-  @keyframes scroll {
-    from { transform: translateX(100%); }
-    to   { transform: translateX(-100%); }
-  }
-
-  /* Pausa só no número */
-  @keyframes pauseNumero {
-    0%, 40%   { transform: translateX(0); }
-    40%, 55%  { transform: translateX(0); animation-play-state: paused; }
-    55%, 100% { transform: translateX(0); }
+  /* Pausa geral */
+  @keyframes animacao {
+    0%   { transform: translateX(100%); }
+    40%  { transform: translateX(0); }
+    40%  { animation-play-state: paused; }
+    55%  { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
   }
 </style>
