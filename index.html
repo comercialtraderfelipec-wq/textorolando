@@ -6,29 +6,33 @@
 <title>Chamada TurboTrader</title>
 <style>
   html,body{margin:0;padding:0;height:0;overflow:hidden;background:transparent}
-  #container{
-    position:fixed;bottom:0;left:0;width:100%;height:70px;
-    background:#c61b1b;display:flex;align-items:center;overflow:hidden;
-    box-shadow:0 -4px 12px rgba(0,0,0,0.25);
-  }
-
-  /* rolagem */
+  #container{position:fixed;bottom:0;left:0;width:100%;height:70px;background:#c61b1b;display:flex;align-items:center;overflow:hidden;box-shadow:0 -4px 12px rgba(0,0,0,0.25)}
   #marquee{display:flex;white-space:nowrap;animation:scroll 25s linear infinite;will-change:transform}
 
-  /* texto: inline-block pra alinhar corretamente */
+  /* texto padronizado */
   .marquee-text{
     color:#fff;
     font-size:30px;
     font-family:Arial,Helvetica,sans-serif;
-    font-weight:700;
+    font-weight:700; /* peso base consistente */
     text-transform:uppercase;
     text-shadow:2px 2px 4px rgba(0,0,0,0.6);
-    padding-right:160px;       /* espaço entre repetições */
-    display:inline-block;      /* evita desalinhamento */
+    padding-right:160px;
+    display:inline-block;
     vertical-align:middle;
-    line-height:70px;          /* alinha verticalmente dentro da faixa */
-    word-spacing:6px;          /* evita palavras grudadas */
-    letter-spacing:0.15px;
+    line-height:70px;
+    word-spacing:6px;
+    letter-spacing:0.6px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* destaques consistentes (usa Arial Black se disponível) */
+  .strong{
+    font-weight:900;
+    font-family:"Arial Black", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing:0.8px;
   }
 
   /* destaque do CTA (número) */
@@ -37,23 +41,22 @@
     display:inline-block;
     vertical-align:middle;
     margin-left:8px;
-    padding:6px 10px;
+    padding:6px 12px;
     border-radius:6px;
     font-weight:900;
+    font-family:"Arial Black", Arial, sans-serif;
     text-shadow:0 0 6px rgba(0,255,144,0.4);
     animation:ctaPulse 1.6s ease-in-out infinite;
+    font-size:32px; /* número ligeiramente maior */
   }
 
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  @keyframes ctaPulse{
-    from{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45)); transform:translateY(0)}
-    to{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85)); transform:translateY(-1px)}
-  }
+  @keyframes ctaPulse{from{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45)); transform:translateY(0)}to{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85)); transform:translateY(-1px)}}
 
-  /* mobile */
   @media (max-width:640px){
     .marquee-text{font-size:20px;padding-right:100px;line-height:56px}
     #container{height:56px}
+    .cta{font-size:22px}
   }
 </style>
 </head>
@@ -61,14 +64,14 @@
   <div id="container" role="region" aria-label="Chamada para acessar ferramentas">
     <div id="marquee">
       <span class="marquee-text">
-        🚀 <b>TESTE GRÁTIS</b> POR <b>7 DIAS</b> DAS FERRAMENTAS! Mande <b>EU QUERO</b> NO <b>WHATSAPP</b>
-        <span class="cta">📲 <b>31 9 8859-0178</b></span> PRA <b>GARANTIR O ACESSO</b> E <b>ENTRAR NA LISTA AGORA</b>! 🔥
+        🚀 <span class="strong">TESTE GRÁTIS</span> <span class="strong">POR 7 DIAS</span> DAS FERRAMENTAS! MANDE <span class="strong">EU QUERO</span> NO <span class="strong">WHATSAPP</span>
+        <span class="cta">📲 31 9 8859-0178</span> PARA <span class="strong">GARANTIR O ACESSO</span> E <span class="strong">ENTRAR NA LISTA AGORA</span>! 🔥
       </span>
 
       <!-- repetição para loop contínuo -->
       <span class="marquee-text">
-        🚀 <b>TESTE GRÁTIS</b> POR <b>7 DIAS</b> DAS FERRAMENTAS! Mande <b>EU QUERO</b> NO <b>WHATSAPP</b>
-        <span class="cta">📲 <b>31 9 8859-0178</b></span> PRA <b>GARANTIR O ACESSO</b> E <b>ENTRAR NA LISTA AGORA</b>! 🔥
+        🚀 <span class="strong">TESTE GRÁTIS</span> <span class="strong">POR 7 DIAS</span> DAS FERRAMENTAS! MANDE <span class="strong">EU QUERO</span> NO <span class="strong">WHATSAPP</span>
+        <span class="cta">📲 31 9 8859-0178</span> PARA <span class="strong">GARANTIR O ACESSO</span> E <span class="strong">ENTRAR NA LISTA AGORA</span>! 🔥
       </span>
     </div>
   </div>
