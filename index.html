@@ -3,32 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Chamada TurboTrader - Pausa Só Número</title>
+<title>Chamada TurboTrader - Pausa Bloco</title>
 <style>
   html,body{margin:0;padding:0;height:0;overflow:hidden;background:transparent}
   #container{position:fixed;bottom:0;left:0;width:100%;height:70px;background:#c61b1b;display:flex;align-items:center;overflow:hidden;box-shadow:0 -4px 12px rgba(0,0,0,0.25)}
   #marquee{display:flex;white-space:nowrap;animation:scroll 25s linear infinite;will-change:transform}
-
-  .marquee-text{
-    color:#fff;font-size:30px;font-family:Arial,Helvetica,sans-serif;font-weight:700;text-transform:uppercase;
-    text-shadow:2px 2px 4px rgba(0,0,0,0.6);padding-right:160px;display:inline-block;vertical-align:middle;
-    line-height:70px;word-spacing:6px;letter-spacing:0.6px;-webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;
-  }
+  .marquee-text{color:#fff;font-size:30px;font-family:Arial,Helvetica,sans-serif;font-weight:700;text-transform:uppercase;text-shadow:2px 2px 4px rgba(0,0,0,0.6);padding-right:160px;display:inline-block;vertical-align:middle;line-height:70px;word-spacing:6px;letter-spacing:0.6px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
   .strong{font-weight:900;font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:0.8px}
   .cta{color:#00ff90;display:inline-block;vertical-align:middle;margin-left:8px;padding:6px 12px;border-radius:6px;font-weight:900;font-family:"Arial Black",Arial,sans-serif;text-shadow:0 0 6px rgba(0,255,144,0.4);animation:ctaPulse 1.6s ease-in-out infinite;font-size:32px}
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
   @keyframes ctaPulse{from{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45)); transform:translateY(0)}to{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85)); transform:translateY(-1px)}}
   @media (max-width:640px){.marquee-text{font-size:20px;padding-right:100px;line-height:56px}#container{height:56px}.cta{font-size:22px}}
-  /* número fixo central (invisível por padrão) */
-  .cta-fixed{
-    position:fixed; left:50%; transform:translateX(-50%); bottom:18px;
-    background:transparent; color:#00ff90; font-family:"Arial Black", Arial, sans-serif;
-    font-size:34px; padding:6px 12px; border-radius:6px; text-shadow:0 0 10px rgba(0,255,144,0.6); pointer-events:none;
-    opacity:0; transition:opacity .18s ease;
-    z-index:9999;
-  }
-  .cta-fixed.show{opacity:1}
+  /* quando pausado adiciona classe paused no marquee */
+  #marquee.paused{animation-play-state:paused}
 </style>
 </head>
 <body>
@@ -45,42 +32,34 @@
     </div>
   </div>
 
-  <!-- número fixo que aparece por cima quando o número passa no centro -->
-  <div id="ctaFixed" class="cta-fixed" aria-hidden="true">📲 31 9 8859-0178</div>
-
 <script>
 (function(){
-  const CHECK_MS = 80;            // checagem
-  const HOLD_MS = 2000;           // pausa visível 2s
-  const THRESH = 18;              // +/- px do centro para disparar
+  const CHECK_MS = 80;
+  const HOLD_MS = 2000;
+  const THRESH = 18;
   const marquee = document.getElementById('marquee');
-  const fixed = document.getElementById('ctaFixed');
   let cooldown = false;
 
   function checkCenter(){
     if(cooldown) return;
-    // pega todas as ctas visíveis no marquee (existem 2 por repetição)
     const ctas = marquee.querySelectorAll('.cta');
     const centerX = window.innerWidth / 2;
     for(let c of ctas){
       const r = c.getBoundingClientRect();
-      // centro do elemento
       const mid = r.left + r.width/2;
       if(mid > centerX - THRESH && mid < centerX + THRESH){
-        // dispara: mostra fixed por HOLD_MS
         cooldown = true;
-        fixed.classList.add('show');
-        setTimeout(()=>{ fixed.classList.remove('show'); }, HOLD_MS);
-        // evita re-disparar por um tempo extra
+        marquee.classList.add('paused');
+        setTimeout(()=>{
+          marquee.classList.remove('paused');
+        }, HOLD_MS);
         setTimeout(()=>{ cooldown = false; }, HOLD_MS + 350);
         break;
       }
     }
   }
 
-  // loop de checagem simples
   const intervalId = setInterval(checkCenter, CHECK_MS);
-  // limpa se sair da página
   window.addEventListener('unload', ()=>clearInterval(intervalId));
 })();
 </script>
