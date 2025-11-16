@@ -1,61 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Chamada TurboTrader</title>
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 0;
-  overflow: hidden;
-  background: transparent;
-}
-#container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background: red;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-#marquee {
-  display: flex;
-  white-space: nowrap;
-  animation: scroll 25s linear infinite;
-}
-.marquee-text {
-  color: #fff;
-  font-size: 30px;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-  padding-right: 150px;
-}
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-b {
-  color: #00ff90;
-  text-shadow: 0 0 8px rgba(0,255,144,0.8);
-}
+  html,body{margin:0;padding:0;height:0;overflow:hidden;background:transparent}
+  #container{
+    position:fixed;
+    bottom:0;left:0;width:100%;height:70px;
+    background:#c61b1b; /* vermelho forte */
+    display:flex;align-items:center;overflow:hidden;
+    box-shadow:0 -4px 12px rgba(0,0,0,0.25);
+  }
+
+  /* área rolante */
+  #marquee{
+    display:flex;
+    white-space:nowrap;
+    animation:scroll 25s linear infinite; /* tempo = 25s como você pediu */
+    will-change:transform;
+  }
+
+  .marquee-text{
+    color:#fff;
+    font-size:30px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    text-shadow:2px 2px 4px rgba(0,0,0,0.6);
+    padding-right:160px; /* espaço entre repetições (médio/grande) */
+    display:inline-flex;
+    align-items:center;
+  }
+
+  /* destaque do CTA (número) */
+  .cta{
+    color:#00ff90;
+    margin-left:6px;
+    padding:4px 8px;
+    border-radius:6px;
+    font-weight:900;
+    text-shadow:0 0 6px rgba(0,255,144,0.4);
+    animation:ctaPulse 1.6s ease-in-out infinite;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  @keyframes scroll{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  @keyframes ctaPulse{
+    from{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45)); transform:translateY(0)}
+    to{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85)); transform:translateY(-1px)}
+  }
+
+  /* deixa o texto legível em telas pequenas */
+  @media (max-width:640px){
+    .marquee-text{font-size:20px;padding-right:100px}
+    #container{height:56px}
+  }
 </style>
 </head>
 <body>
-<div id="container">
-  <div id="marquee">
-    <span class="marquee-text">
-      🔥 OFERTA EXCLUSIVA PARA QUEM ESTÁ NA LIVE: TESTAR MINHA ESTRATÉGIA + IA. WHATSAPP <b>31 9 8859-0178</b> 🔥
-    </span>
-    <span class="marquee-text">
-      🔥 OFERTA EXCLUSIVA PARA QUEM ESTÁ NA LIVE: TESTAR MINHA ESTRATÉGIA + IA. WHATSAPP <b>31 9 8859-0178</b> 🔥
-    </span>
+  <div id="container" aria-hidden="false" role="region" aria-label="Chamada para acessar ferramentas">
+    <div id="marquee" aria-hidden="false">
+      <span class="marquee-text">
+        🚀 <b>TESTE GRÁTIS</b> POR <b>7 DIAS</b> DAS FERRAMENTAS! MANDE <b>EU QUERO</b> NO <b>WHATSAPP</b>
+        <span class="cta">📲 <b>31 9 8859-0178</b></span> PRA <b>GARANTIR O ACESSO</b> E <b>ENTRAR NA LISTA AGORA</b>! 🔥
+      </span>
+
+      <!-- repetição para loop contínuo -->
+      <span class="marquee-text">
+        🚀 <b>TESTE GRÁTIS</b> POR <b>7 DIAS</b> DAS FERRAMENTAS! MANDE <b>EU QUERO</b> NO <b>WHATSAPP</b>
+        <span class="cta">📲 <b>31 9 8859-0178</b></span> PRA <b>GARANTIR O ACESSO</b> E <b>ENTRAR NA LISTA AGORA</b>! 🔥
+      </span>
+    </div>
   </div>
-</div>
 </body>
 </html>
