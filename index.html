@@ -8,29 +8,76 @@
   html,body{margin:0;padding:0;height:0;overflow:hidden;background:transparent}
   #container{position:fixed;bottom:0;left:0;width:100%;height:70px;background:#c61b1b;display:flex;align-items:center;overflow:hidden;box-shadow:0 -4px 12px rgba(0,0,0,0.25)}
   #marquee{display:flex;white-space:nowrap;animation:scroll 25s linear infinite;will-change:transform}
-  .marquee-text{color:#fff;font-size:30px;font-family:Arial,Helvetica,sans-serif;font-weight:700;text-transform:uppercase;text-shadow:2px 2px 4px rgba(0,0,0,0.6);padding-right:60px;display:inline-block;vertical-align:middle;line-height:70px;word-spacing:6px;letter-spacing:0.6px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-  .strong{font-weight:900;font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:0.8px}
-  .cta{font-weight:900;font-family:"Arial Black",Arial,sans-serif;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,0.6);font-size:30px;letter-spacing:0.8px;padding:0;margin-left:8px;}
+
+  .marquee-text{
+    color:#fff;font-size:30px;font-family:Arial,Helvetica,sans-serif;font-weight:700;
+    text-transform:uppercase;text-shadow:2px 2px 4px rgba(0,0,0,0.6);
+    padding-right:60px;display:inline-block;vertical-align:middle;
+    line-height:70px;word-spacing:6px;letter-spacing:0.6px;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+  }
+
+  .strong{
+    font-weight:900;
+    font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;
+    letter-spacing:0.8px;
+  }
+
+  .cta{
+    font-weight:900;
+    font-family:"Arial Black",Arial,sans-serif;
+    color:#00ff90;
+    text-shadow:0 0 8px rgba(0,255,144,0.55);
+    font-size:32px;
+    letter-spacing:1px;
+    padding:4px 10px;
+    animation:ctaPulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes ctaPulse{
+    0%{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45))}
+    50%{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85))}
+    100%{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45))}
+  }
+
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  @keyframes ctaPulse{from{filter:drop-shadow(0 0 6px rgba(0,255,144,0.45)); transform:translateY(0)}to{filter:drop-shadow(0 0 18px rgba(0,255,144,0.85)); transform:translateY(-1px)}}
-  @media (max-width:640px){.marquee-text{font-size:20px;padding-right:100px;line-height:56px}#container{height:56px}.cta{font-size:22px}}
+
+  @media (max-width:640px){
+    .marquee-text{font-size:20px;padding-right:100px;line-height:56px}
+    #container{height:56px}
+    .cta{font-size:22px}
+  }
+
   #marquee.paused{animation-play-state:paused}
 </style>
 </head>
 <body>
-  <div id="container" role="region" aria-label="Chamada para acessar ferramentas">
+  <div id="container">
     <div id="marquee">
 
+      <!-- BLOCO 1 -->
       <span class="marquee-text">
-        🚀 <span class="strong">MANDE</span> <span class="cta">EU QUERO</span> <span class="strong">NO</span> <span class="strong">CHAT</span>
-        <span class="strong">E</span> <span class="strong">GARANTA</span> <span class="strong">O</span> <span class="strong">ACESSO</span> 
-        <span class="strong">AO</span> <span class="strong">GRUPO</span> <span class="strong">VIP</span> <span class="strong">E</span> <span class="strong">FERRAMENTAS</span> 🔥
+        🚀 <span class="strong">CLIQUE</span> <span class="strong">NO</span>
+        <span class="cta">LINK DA BIO</span>
+        <span class="strong">PARA</span> <span class="strong">LIBERAR</span>
+        <span class="strong">ACESSO</span> <span class="strong">GRÁTIS</span>
+        <span class="strong">À</span> <span class="strong">IA</span>
+        <span class="strong">TITAN</span> <span class="strong">E</span>
+        <span class="strong">AO</span> <span class="strong">INDICADOR</span>
+        <span class="strong">TITAN!</span> <span class="strong">🔥</span>
       </span>
 
+      <!-- BLOCO 2 -->
       <span class="marquee-text">
-        🚀 <span class="strong">MANDE</span> <span class="cta">EU QUERO</span> <span class="strong">NO</span> <span class="strong">CHAT</span>
-        <span class="strong">E</span> <span class="strong">GARANTA</span> <span class="strong">O</span> <span class="strong">ACESSO</span> 
-        <span class="strong">AO</span> <span class="strong">GRUPO</span> <span class="strong">VIP</span> <span class="strong">E</span> <span class="strong">FERRAMENTAS</span> 🔥
+        🚀 <span class="strong">CLIQUE</span> <span class="strong">NO</span>
+        <span class="cta">LINK DA BIO</span>
+        <span class="strong">PARA</span> <span class="strong">LIBERAR</span>
+        <span class="strong">ACESSO</span> <span class="strong">GRÁTIS</span>
+        <span class="strong">À</span> <span class="strong">IA</span>
+        <span class="strong">TITAN</span> <span class="strong">E</span>
+        <span class="strong">AO</span> <span class="strong">INDICADOR</span>
+        <span class="strong">TITAN!</span> <span class="strong">🔥</span>
       </span>
 
     </div>
@@ -48,16 +95,21 @@
     if(cooldown) return;
     const ctas = marquee.querySelectorAll('.cta');
     const centerX = window.innerWidth / 2;
+
     for(let c of ctas){
       const r = c.getBoundingClientRect();
       const mid = r.left + r.width/2;
+
       if(mid > centerX - THRESH && mid < centerX + THRESH){
         cooldown = true;
         marquee.classList.add('paused');
+
         setTimeout(()=>{
           marquee.classList.remove('paused');
         }, HOLD_MS);
+
         setTimeout(()=>{ cooldown = false; }, HOLD_MS + 350);
+
         break;
       }
     }
